@@ -529,14 +529,13 @@ function Contact() {
               </div>
 
               <a
-                href="#"
+                href="https://cal.com/sohail-data-expert/free-discovery-call"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-95"
               >
                 <Calendar className="h-4 w-4" /> Open full calendar
               </a>
-              <p className="mt-3 text-center font-mono text-[10px] text-muted-foreground">
-                Calendly widget embeds here in production
-              </p>
             </div>
           </div>
         </div>
