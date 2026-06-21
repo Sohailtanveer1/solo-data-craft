@@ -10,24 +10,24 @@ import {
   Linkedin,
   Mail,
   Clock,
-  DollarSign,
   Zap,
   Check,
   X,
   Workflow,
   Terminal,
+  Phone,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Marcus Vale — Independent Data Engineer | Scalable Pipelines & Cloud Cost Optimization" },
+      { title: "MD Sohail Tanveer — Senior Data Engineer | GCP Professional Data Engineer Certified" },
       {
         name: "description",
         content:
-          "Independent Data Engineer building scalable ETL/ELT pipelines on Snowflake, BigQuery, dbt and Airflow. Reduce data latency, cut cloud costs, ship production-grade infrastructure.",
+          "Senior Data Engineer with 4 years of experience designing scalable ETL/ELT pipelines on GCP. Expert in Medallion Architecture, dbt, Apache Spark, Airflow, BigQuery, and Snowflake.",
       },
-      { property: "og:title", content: "Marcus Vale — Independent Data Engineer" },
+      { property: "og:title", content: "MD Sohail Tanveer — Senior Data Engineer" },
       { property: "og:description", content: "I build scalable data pipelines that turn raw data into business decisions." },
       { property: "og:type", content: "website" },
     ],
@@ -36,79 +36,79 @@ export const Route = createFileRoute("/")({
 });
 
 const stack = [
-  "Snowflake", "BigQuery", "Databricks", "dbt", "Apache Airflow", "Dagster",
-  "Apache Kafka", "Python", "AWS", "GCP", "PostgreSQL", "Terraform",
-  "Fivetran", "Spark", "Redshift", "Kubernetes",
+  "Python", "PySpark", "SQL", "BigQuery", "Snowflake", "dbt",
+  "Apache Airflow", "GCP", "Dataproc", "Cloud Composer",
+  "Apache Spark", "Kafka", "Docker", "GitLab CI/CD", "Apache Iceberg", "Medallion Architecture",
 ];
 
 const pillars = [
   {
     icon: Workflow,
-    title: "End-to-End Pipeline Automation",
-    body: "Ingestion from REST, gRPC, CDC and event streams. Idempotent ELT with dbt, contract-tested transformations, dead-letter queues and SLA-aware orchestration in Airflow or Dagster.",
-    bullets: ["CDC + streaming ingestion", "Idempotent, replayable jobs", "SLA + freshness alerting"],
-  },
-  {
-    icon: Gauge,
-    title: "Cloud Cost & Performance Tuning",
-    body: "Audit warehouse spend down to the query. Re-cluster Snowflake tables, right-size compute, kill runaway SQL, push BigQuery slot usage into predictable budgets.",
-    bullets: ["Warehouse + slot right-sizing", "Query plan rewrites", "Spend forecasting"],
+    title: "Scalable ETL/ELT Pipeline Engineering",
+    body: "Config-driven ingestion from REST APIs, SFTP, CDC, and SaaS sources. YAML-driven PySpark workflows on Dataproc Serverless with idempotent design, automated late-arriving data handling, and Secret Manager-secured credentials.",
+    bullets: ["YAML-driven multi-feed PySpark framework", "Idempotent, replayable Airflow DAGs", "SCD Type 1 & 2 with deduplication"],
   },
   {
     icon: Layers,
-    title: "Modern Data Stack Setup",
-    body: "Migrate from brittle stored-proc + cron stacks to a modular lakehouse: Iceberg/Delta storage, dbt modeling, semantic layer, lineage and CI/CD on every model change.",
-    bullets: ["Lakehouse on S3 / GCS", "dbt + semantic layer", "CI/CD for data models"],
+    title: "Medallion Architecture & dbt Modeling",
+    body: "End-to-end Medallion lakehouse design — Bronze to Gold — using dbt for staging, transformation, and semantic layers. Full SCD Type 2 historical tracking, data validation, and analytics-ready BigQuery views for self-serve analytics.",
+    bullets: ["dbt staging + semantic layers", "SCD Type 2 via snapshots", "Self-serve analytics views"],
+  },
+  {
+    icon: Gauge,
+    title: "Cloud Data Warehouse Optimization",
+    body: "Architect governed data platforms on GCP (BigQuery, Dataproc) and Snowflake. Tune query performance with clustering, partitioning, and materialization strategies to slash latency and compute costs.",
+    bullets: ["BigQuery + Snowflake optimization", "Clustering & partition tuning", "CI/CD for data models"],
   },
 ];
 
 const cases = [
   {
-    title: "Real-Time Marketplace Analytics for a Series-B Fintech",
-    timeline: "11-week engagement · 2025",
-    role: "Solo Data Architect",
+    title: "GCP Data Integration Platform",
+    timeline: "Oct 2025 – Present · Coforge",
+    role: "Senior Data Engineer",
     problem:
-      "12 fragmented payment-provider APIs, batch jobs landing reports 24 hours late, and a Snowflake bill growing 18% month-over-month from unbounded warehouse scaling.",
-    stack: ["Kafka", "Debezium CDC", "Snowflake", "dbt Cloud", "Airflow", "Terraform"],
+      "Business needed to onboard 10+ distinct data feeds from BigQuery, SFTP, REST APIs, and Salesforce into MySQL, GCS, and PostgreSQL targets — with no reusable framework, every new feed required weeks of custom engineering.",
+    stack: ["GCP", "PySpark", "Dataproc Serverless", "Cloud Composer", "Airflow", "BigQuery", "dbt", "Secret Manager"],
     architecture: [
-      "Debezium CDC → Kafka topics → Snowpipe Streaming",
-      "dbt incremental models with state:modified+ selectors",
-      "Cluster keys + auto-suspend tuned per workload tier",
-      "Airflow DAGs with data-aware scheduling and PagerDuty SLAs",
+      "YAML-driven PySpark ETL framework on Dataproc Serverless handles 10+ feeds from a single codebase",
+      "Dynamic Airflow DAGs automate the full lifecycle: raw ingestion → staging → deduplication → SCD Type 1 → export",
+      "dbt staging layer with SCD Type 2 historical tracking and zero data loss on source changes",
+      "Semantic layer of pre-aggregated BigQuery views enabling self-serve analytics for business stakeholders",
     ],
     impact: [
-      "Data latency: 24h → 15 min",
-      "Snowflake compute: $7,800 → $3,600 / mo",
-      "Finance close: 9 days → 2 days",
+      "Pipeline dev effort cut by 70%",
+      "New feed onboarding reduced by 30%",
+      "99.2% pipeline reliability via idempotent design",
     ],
   },
   {
-    title: "Lakehouse Migration for a Logistics SaaS (180+ Tables)",
-    timeline: "16-week engagement · 2024",
-    role: "Solo Data Architect",
+    title: "Automated Data Pipeline — Snowflake & dbt",
+    timeline: "Aug 2023 – Sep 2025 · Logic Pursuits Consulting India",
+    role: "Data Engineer",
     problem:
-      "Legacy SQL Server + nightly SSIS pipelines, no lineage, no tests, six analysts blocked by a single 7-hour batch window. Schema changes shipped to prod via shared drive.",
-    stack: ["AWS", "S3 + Iceberg", "Glue", "dbt Core", "Dagster", "Great Expectations"],
+      "Enterprise needed to move incremental CDC data from a Landing Zone into a governed EDW on Snowflake — manual processing caused 30%+ higher latency and data inconsistency across analytics teams.",
+    stack: ["Snowflake", "dbt", "Control-M", "SQL", "Python", "Streams", "Snowpipe", "Stored Procedures"],
     architecture: [
-      "Iceberg tables on S3 with partition evolution",
-      "Dagster software-defined assets for full lineage graph",
-      "dbt + Great Expectations gating every PR in CI",
-      "Blue/green schema rollouts with zero-downtime cutover",
+      "End-to-end ETL on Snowflake using Streams, Tasks, Snowpipe, and Stored Procedures for CDC ingestion",
+      "dbt transformation workflows with SCD Type 2 snapshots for full historical tracking and point-in-time audit",
+      "Analytics-ready models with clustering, partitioning, and query optimization for fast BI querying",
+      "Automated scheduling, dependency management, and monitoring via Control-M",
     ],
     impact: [
-      "Batch window: 7h → 38 min",
-      "Storage cost: ↓ 61% via Iceberg compaction",
-      "Analyst lead time: 4 days → same day",
+      "Data processing latency reduced by 30%+",
+      "Full SCD Type 2 historical tracking across EDW",
+      "Reduced ad-hoc analyst data requests by 30%",
     ],
   },
 ];
 
 const comparison = [
-  { label: "Time to first production pipeline", agency: "6–10 weeks", me: "10–14 days" },
-  { label: "Communication path", agency: "PM → Lead → Junior dev", me: "Direct with the engineer building it" },
-  { label: "Context switching cost", agency: "Shared across 5+ accounts", me: "1–2 clients at a time" },
-  { label: "Overhead in your invoice", agency: "40–60% management + sales", me: "0% — you pay for engineering" },
-  { label: "Architectural decisions", agency: "Committee + slide decks", me: "Made in the PR" },
+  { label: "Pipeline reliability", agency: "Best-effort, manual monitoring", me: "99.2% via idempotent + SLA-aware Airflow design" },
+  { label: "Feed onboarding speed", agency: "Weeks of custom engineering per feed", me: "30–70% faster via config-driven YAML framework" },
+  { label: "Data modeling", agency: "Ad-hoc SQL without lineage or tests", me: "dbt + SCD Type 2 + full audit trail" },
+  { label: "Cloud expertise", agency: "Generalist cloud knowledge", me: "GCP Professional Certified + Snowflake production" },
+  { label: "CI/CD for data", agency: "Manual deploys, no testing gate", me: "GitLab CI/CD with contract-tested transformations" },
 ];
 
 function Portfolio() {
@@ -128,7 +128,6 @@ function Portfolio() {
 }
 
 function FontHead() {
-  // Fonts injected at root in __root.tsx normally; here we add a runtime <link> fallback.
   return (
     <link
       rel="stylesheet"
@@ -145,22 +144,22 @@ function Nav() {
           <span className="grid h-8 w-8 place-items-center rounded-md bg-primary/15 text-primary">
             <Database className="h-4 w-4" />
           </span>
-          marcus<span className="text-primary">.vale</span>
+          sohail<span className="text-primary">.data</span>
           <span className="ml-2 hidden font-mono text-[11px] font-normal text-muted-foreground sm:inline">
-            // data engineer
+            // senior data engineer
           </span>
         </a>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="#expertise" className="hover:text-foreground transition-colors">Expertise</a>
-          <a href="#work" className="hover:text-foreground transition-colors">Case Studies</a>
-          <a href="#advantage" className="hover:text-foreground transition-colors">Why Solo</a>
+          <a href="#work" className="hover:text-foreground transition-colors">Projects</a>
+          <a href="#advantage" className="hover:text-foreground transition-colors">Why Me</a>
           <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
         </nav>
         <a
           href="#contact"
           className="hidden items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex"
         >
-          Book a call <ArrowRight className="h-4 w-4" />
+          Get in Touch <ArrowRight className="h-4 w-4" />
         </a>
       </div>
     </header>
@@ -180,7 +179,7 @@ function Hero() {
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-xs text-muted-foreground"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px] shadow-primary" />
-          Available for 1 new engagement · Q3 2026
+          GCP Professional Data Engineer Certified · Open to Remote / Relocation
         </motion.div>
 
         <motion.h1
@@ -198,8 +197,8 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl"
         >
-          An independent Data Engineer helping remote teams automate data ingestion, optimize cloud data warehouses,
-          and slash compute costs — without the overhead of a full agency.
+          Senior Data Engineer with 4 years of experience designing ETL/ELT pipelines and Big Data workflows on GCP.
+          Specialist in Medallion Architecture, dbt, Apache Spark, Airflow, BigQuery, and Snowflake.
         </motion.p>
 
         <motion.div
@@ -212,15 +211,15 @@ function Hero() {
             href="#contact"
             className="group inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-95"
           >
-            <Calendar className="h-4 w-4" />
-            Book a Data Strategy Call
+            <Mail className="h-4 w-4" />
+            Get in Touch
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
           </a>
           <a
             href="#work"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-surface/60 px-5 py-3 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-surface"
           >
-            Explore Case Studies
+            View Projects
           </a>
         </motion.div>
 
@@ -231,10 +230,10 @@ function Hero() {
           className="mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4"
         >
           {[
-            ["7+ yrs", "shipping data infra"],
-            ["$340k", "client cloud spend cut"],
-            ["180+", "dbt models in production"],
-            ["12", "remote engagements"],
+            ["4 yrs", "data engineering experience"],
+            ["99.2%", "pipeline reliability achieved"],
+            ["70%", "pipeline dev effort cut"],
+            ["GCP", "Professional Certified"],
           ].map(([k, v]) => (
             <div key={k} className="bg-background p-5">
               <div className="font-display text-2xl font-semibold text-foreground">{k}</div>
@@ -281,7 +280,7 @@ function Pillars() {
       <SectionHeader
         kicker="Core Expertise"
         title="Three pillars. All production. No theory."
-        sub="I'm hired to ship infrastructure that finance, ops, and product can bet on — not slide decks."
+        sub="Built to ship infrastructure that finance, ops, and product teams can bet on — not slide decks."
       />
       <div className="mt-14 grid gap-5 md:grid-cols-3">
         {pillars.map((p, i) => (
@@ -320,8 +319,8 @@ function CaseStudies() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
           kicker="Project Case Studies"
-          title="Selected engagements"
-          sub="Two recent solo builds. Real architectures, real numbers."
+          title="Production-grade data engineering"
+          sub="Real architectures, real impact numbers from professional engagements."
         />
         <div className="mt-14 space-y-8">
           {cases.map((c, i) => (
@@ -384,13 +383,6 @@ function CaseStudies() {
 
                   <div className="mt-6">
                     <ArchitectureDiagram variant={i} />
-                    <a
-                      href="#"
-                      className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-surface px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-primary/40"
-                    >
-                      <Github className="h-4 w-4" />
-                      View Codebase
-                    </a>
                   </div>
                 </div>
               </div>
@@ -405,8 +397,8 @@ function CaseStudies() {
 function ArchitectureDiagram({ variant }: { variant: number }) {
   const nodes =
     variant === 0
-      ? ["Sources", "Kafka", "Snowflake", "dbt", "BI"]
-      : ["SQL Server", "Glue", "S3 / Iceberg", "Dagster", "Analytics"];
+      ? ["Sources", "Airflow", "Dataproc", "dbt", "BigQuery"]
+      : ["Landing Zone", "Snowpipe", "Snowflake", "dbt", "EDW"];
   return (
     <div className="rounded-lg border border-border bg-background/60 p-4">
       <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
@@ -436,16 +428,16 @@ function Advantage() {
   return (
     <section id="advantage" className="relative mx-auto max-w-7xl px-6 py-28">
       <SectionHeader
-        kicker="The One-Man Team Advantage"
-        title="Senior engineer. Zero overhead. Direct line."
-        sub="You're not paying an account manager to translate between you and a junior dev. You're talking to the person writing the SQL."
+        kicker="What Sets Me Apart"
+        title="Senior engineer. Production mindset. GCP certified."
+        sub="4 years of shipping data infrastructure that teams depend on — not just notebooks and demos."
       />
 
       <div className="mt-14 overflow-hidden rounded-2xl border border-border bg-card">
         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-0 border-b border-border bg-surface/60 px-6 py-4 font-mono text-[11px] uppercase tracking-wider">
-          <div className="text-muted-foreground">Traditional Agency</div>
+          <div className="text-muted-foreground">Generic Approach</div>
           <div className="px-4 text-center text-muted-foreground">vs</div>
-          <div className="text-right text-primary">Working with Me</div>
+          <div className="text-right text-primary">My Approach</div>
         </div>
         {comparison.map((row, i) => (
           <div
@@ -470,9 +462,9 @@ function Advantage() {
 
       <div className="mt-10 grid gap-4 md:grid-cols-3">
         {[
-          { icon: Zap, h: "Production velocity", p: "First pipeline merged within 2 weeks. No discovery-phase theatre." },
-          { icon: DollarSign, h: "No agency margin", p: "Every dollar goes to engineering hours, not pre-sales staff." },
-          { icon: Terminal, h: "Engineer-to-engineer", p: "Talk to me in Slack. I push to your repo. No PMs in the loop." },
+          { icon: Zap, h: "Production velocity", p: "Config-driven frameworks cut onboarding and pipeline dev time by 30–70%. No reinventing the wheel." },
+          { icon: Database, h: "GCP-native expertise", p: "Certified GCP Professional Data Engineer. BigQuery, Dataproc, Cloud Composer, Secret Manager — in production." },
+          { icon: Terminal, h: "End-to-end ownership", p: "From raw ingestion to semantic layer. Medallion Architecture with dbt, CI/CD, and full audit trail baked in." },
         ].map((b) => (
           <div key={b.h} className="rounded-xl border border-border bg-card p-6">
             <b.icon className="h-5 w-5 text-primary" />
@@ -493,50 +485,52 @@ function Contact() {
         <div className="rounded-3xl border border-border bg-card/80 p-8 shadow-[var(--shadow-glow)] backdrop-blur sm:p-12">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
             <div>
-              <div className="font-mono text-xs uppercase tracking-[0.2em] text-primary">Let's talk</div>
+              <div className="font-mono text-xs uppercase tracking-[0.2em] text-primary">Let's connect</div>
               <h2 className="mt-3 font-display text-3xl font-bold leading-tight sm:text-5xl">
-                Ready to optimize your <span className="text-gradient">data infrastructure?</span>
+                Let's build something <span className="text-gradient">remarkable together.</span>
               </h2>
               <p className="mt-5 text-muted-foreground">
-                Book a 30-minute strategy call. We'll map your current stack, identify the highest-ROI fix,
-                and decide if a focused engagement makes sense — no sales pitch.
+                Open to senior data engineering roles, freelance engagements, and remote opportunities.
+                Reach out via email or LinkedIn — I reply within 24 hours.
               </p>
               <div className="mt-8 space-y-3">
-                <ContactLink icon={Mail} label="marcus@valedata.io" href="mailto:marcus@valedata.io" />
-                <ContactLink icon={Github} label="github.com/marcusvale" href="#" />
-                <ContactLink icon={Linkedin} label="linkedin.com/in/marcusvale" href="#" />
+                <ContactLink icon={Mail} label="sohailtanveerforjobs@gmail.com" href="mailto:sohailtanveerforjobs@gmail.com" />
+                <ContactLink icon={Linkedin} label="linkedin.com/in/mdsohailtanveer" href="https://linkedin.com/in/mdsohailtanveer" />
+                <ContactLink icon={Github} label="github.com/Sohailtanveer1" href="https://github.com/Sohailtanveer1" />
+                <ContactLink icon={Phone} label="+91-8287515840" href="tel:+918287515840" />
               </div>
             </div>
 
             <div className="rounded-2xl border border-border bg-background/70 p-6">
               <div className="flex items-center justify-between border-b border-border pb-4">
                 <div>
-                  <div className="font-display text-lg font-semibold">Data Strategy Call</div>
-                  <div className="text-xs text-muted-foreground">30 min · Google Meet · Free</div>
+                  <div className="font-display text-lg font-semibold">MD Sohail Tanveer</div>
+                  <div className="text-xs text-muted-foreground">Senior Data Engineer · GCP Certified · Noida, India</div>
                 </div>
-                <Calendar className="h-5 w-5 text-primary" />
+                <Database className="h-5 w-5 text-primary" />
               </div>
 
-              <div className="mt-5 grid grid-cols-3 gap-2">
-                {["Mon 09:00", "Mon 14:00", "Tue 10:00", "Tue 16:00", "Wed 11:00", "Thu 09:00"].map((t) => (
-                  <button
-                    key={t}
-                    className="rounded-md border border-border bg-surface px-2 py-2 font-mono text-[11px] text-muted-foreground transition hover:border-primary/50 hover:text-foreground"
-                  >
-                    {t}
-                  </button>
+              <div className="mt-5 space-y-3">
+                {[
+                  ["Experience", "4 years"],
+                  ["Specialization", "GCP, BigQuery, dbt, Snowflake"],
+                  ["Architecture", "Medallion, ETL/ELT, CDC, SCD"],
+                  ["Availability", "Open to Remote / Relocation"],
+                  ["Certification", "GCP Professional Data Engineer"],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex items-center justify-between rounded-md border border-border bg-surface/40 px-3 py-2.5 font-mono text-[12px]">
+                    <span className="text-muted-foreground">{k}</span>
+                    <span className="text-foreground font-medium">{v}</span>
+                  </div>
                 ))}
               </div>
 
               <a
-                href="#"
+                href="mailto:sohailtanveerforjobs@gmail.com"
                 className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-95"
               >
-                <Calendar className="h-4 w-4" /> Open full calendar
+                <Mail className="h-4 w-4" /> Send me an email
               </a>
-              <p className="mt-3 text-center font-mono text-[10px] text-muted-foreground">
-                Calendly widget embeds here in production
-              </p>
             </div>
           </div>
         </div>
@@ -561,8 +555,8 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-xs text-muted-foreground sm:flex-row">
-        <div className="font-mono">© 2026 Marcus Vale · Independent Data Engineering</div>
-        <div className="font-mono">Built solo. Shipped fast.</div>
+        <div className="font-mono">© 2026 MD Sohail Tanveer · Senior Data Engineer</div>
+        <div className="font-mono">Built with precision. Shipped to production.</div>
       </div>
     </footer>
   );
