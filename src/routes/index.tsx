@@ -21,13 +21,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Marcus Vale — Independent Data Engineer | Scalable Pipelines & Cloud Cost Optimization" },
+      { title: "Sohail Tanveer — Independent Data Engineer | Scalable Pipelines & Cloud Cost Optimization" },
       {
         name: "description",
         content:
           "Independent Data Engineer building scalable ETL/ELT pipelines on Snowflake, BigQuery, dbt and Airflow. Reduce data latency, cut cloud costs, ship production-grade infrastructure.",
       },
-      { property: "og:title", content: "Marcus Vale — Independent Data Engineer" },
+      { property: "og:title", content: "Sohail Tanveer — Independent Data Engineer" },
       { property: "og:description", content: "I build scalable data pipelines that turn raw data into business decisions." },
       { property: "og:type", content: "website" },
     ],
@@ -561,7 +561,7 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-xs text-muted-foreground sm:flex-row">
-        <div className="font-mono">© 2026 Marcus Vale · Independent Data Engineering</div>
+        <div className="font-mono">© 2026 Sohail Tanveer · Independent Data Engineering</div>
         <div className="font-mono">Built solo. Shipped fast.</div>
       </div>
     </footer>
