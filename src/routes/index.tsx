@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { motion } from "motion/react";
 import {
   ArrowRight,
@@ -16,6 +17,7 @@ import {
   X,
   Workflow,
   Terminal,
+  Menu,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -157,9 +159,16 @@ function FontHead() {
 }
 
 function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: "#expertise", label: "Expertise" },
+    { href: "#work", label: "Case Studies" },
+    { href: "#advantage", label: "Why Solo" },
+    { href: "#contact", label: "Contact" },
+  ];
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
         <a href="#top" className="flex items-center gap-2 font-display text-base font-semibold tracking-tight">
           <span className="grid h-8 w-8 place-items-center rounded-md bg-primary/15 text-primary">
             <Database className="h-4 w-4" />
@@ -170,18 +179,49 @@ function Nav() {
           </span>
         </a>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#expertise" className="hover:text-foreground transition-colors">Expertise</a>
-          <a href="#work" className="hover:text-foreground transition-colors">Case Studies</a>
-          <a href="#advantage" className="hover:text-foreground transition-colors">Why Solo</a>
-          <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">{l.label}</a>
+          ))}
         </nav>
-        <a
-          href="#contact"
-          className="hidden items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex"
-        >
-          Book a call <ArrowRight className="h-4 w-4" />
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href="#contact"
+            className="hidden items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex"
+          >
+            Book a call <ArrowRight className="h-4 w-4" />
+          </a>
+          <button
+            onClick={() => setOpen(!open)}
+            className="grid h-9 w-9 place-items-center rounded-md border border-border text-muted-foreground transition hover:text-foreground md:hidden"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
       </div>
+      {open && (
+        <div className="border-t border-border bg-background/95 backdrop-blur md:hidden">
+          <nav className="flex flex-col px-4 py-3">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="rounded-md px-3 py-3 text-sm text-muted-foreground transition hover:bg-surface hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
+            >
+              Book a call <ArrowRight className="h-4 w-4" />
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
@@ -191,7 +231,7 @@ function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
       <div className="absolute inset-0 bg-hero-glow" />
-      <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-28 sm:pt-32 sm:pb-36">
+      <div className="relative mx-auto max-w-7xl px-4 pt-20 pb-20 sm:px-6 sm:pt-32 sm:pb-36">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -296,7 +336,7 @@ function SectionHeader({ kicker, title, sub }: { kicker: string; title: string; 
 
 function Pillars() {
   return (
-    <section id="expertise" className="relative mx-auto max-w-7xl px-6 py-28">
+    <section id="expertise" className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-28">
       <SectionHeader
         kicker="Core Expertise"
         title="Three pillars. All production. No theory."
@@ -335,8 +375,8 @@ function Pillars() {
 
 function CaseStudies() {
   return (
-    <section id="work" className="relative border-t border-border bg-surface/30 py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="work" className="relative border-t border-border bg-surface/30 py-16 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           kicker="Project Case Studies"
           title="Selected engagements"
@@ -434,7 +474,8 @@ function ArchitectureDiagram({ variant }: { variant: number }) {
         <span>pipeline.architecture</span>
         <Terminal className="h-3 w-3" />
       </div>
-      <div className="flex items-center justify-between gap-2">
+      <div className="overflow-x-auto">
+      <div className="flex min-w-[320px] items-center justify-between gap-2">
         {nodes.map((n, idx) => (
           <div key={n} className="flex flex-1 items-center gap-2">
             <div className="flex flex-1 flex-col items-center">
@@ -449,13 +490,14 @@ function ArchitectureDiagram({ variant }: { variant: number }) {
           </div>
         ))}
       </div>
+      </div>
     </div>
   );
 }
 
 function Advantage() {
   return (
-    <section id="advantage" className="relative mx-auto max-w-7xl px-6 py-28">
+    <section id="advantage" className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-28">
       <SectionHeader
         kicker="The One-Man Team Advantage"
         title="Senior engineer. Zero overhead. Direct line."
@@ -508,9 +550,9 @@ function Advantage() {
 
 function Contact() {
   return (
-    <section id="contact" className="relative border-t border-border py-28">
+    <section id="contact" className="relative border-t border-border py-16 sm:py-28">
       <div className="absolute inset-0 bg-hero-glow opacity-60" />
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
         <div className="rounded-3xl border border-border bg-card/80 p-8 shadow-[var(--shadow-glow)] backdrop-blur sm:p-12">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
             <div>
@@ -580,7 +622,7 @@ function ContactLink({ icon: Icon, label, href }: { icon: typeof Mail; label: st
 function Footer() {
   return (
     <footer className="border-t border-border py-10">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-xs text-muted-foreground sm:flex-row">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 text-xs text-muted-foreground sm:flex-row sm:px-6">
         <div className="font-mono">© 2026 Sohail Tanveer · Independent Data Engineering</div>
         <div className="font-mono">Built solo. Shipped fast.</div>
       </div>
