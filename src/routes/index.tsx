@@ -134,7 +134,7 @@ const comparison = [
 
 function Portfolio() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground antialiased">
       <FontHead />
       <Nav />
       <Hero />
@@ -566,8 +566,8 @@ function Contact() {
               </p>
               <div className="mt-8 space-y-3">
                 <ContactLink icon={Mail} label="sohailtanveerforjobs@gmail.com" href="mailto:sohailtanveerforjobs@gmail.com" />
-                <ContactLink icon={Github} label="https://github.com/Sohailtanveer1/data-engineering-portfolio" href="#" />
-                <ContactLink icon={Linkedin} label="https://www.linkedin.com/in/mdsohailtanveer/" href="#" />
+                <ContactLink icon={Github} label="github.com/Sohailtanveer1" href="https://github.com/Sohailtanveer1" />
+                <ContactLink icon={Linkedin} label="linkedin.com/in/mdsohailtanveer" href="https://www.linkedin.com/in/mdsohailtanveer/" />
               </div>
             </div>
 
@@ -613,8 +613,8 @@ function ContactLink({ icon: Icon, label, href }: { icon: typeof Mail; label: st
       href={href}
       className="flex items-center gap-3 rounded-lg border border-border bg-background/40 px-4 py-3 text-sm text-foreground transition hover:border-primary/40 hover:bg-background"
     >
-      <Icon className="h-4 w-4 text-primary" />
-      <span className="font-mono">{label}</span>
+      <Icon className="h-4 w-4 shrink-0 text-primary" />
+      <span className="truncate font-mono text-sm">{label}</span>
     </a>
   );
 }
