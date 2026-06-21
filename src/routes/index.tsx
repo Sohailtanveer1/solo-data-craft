@@ -145,7 +145,7 @@ function Nav() {
           <span className="grid h-8 w-8 place-items-center rounded-md bg-primary/15 text-primary">
             <Database className="h-4 w-4" />
           </span>
-          marcus<span className="text-primary">.vale</span>
+          Sohail<span className="text-primary">.Tanveer</span>
           <span className="ml-2 hidden font-mono text-[11px] font-normal text-muted-foreground sm:inline">
             // data engineer
           </span>
@@ -502,9 +502,9 @@ function Contact() {
                 and decide if a focused engagement makes sense — no sales pitch.
               </p>
               <div className="mt-8 space-y-3">
-                <ContactLink icon={Mail} label="marcus@valedata.io" href="mailto:marcus@valedata.io" />
-                <ContactLink icon={Github} label="github.com/marcusvale" href="#" />
-                <ContactLink icon={Linkedin} label="linkedin.com/in/marcusvale" href="#" />
+                <ContactLink icon={Mail} label="sohailtanveerforjobs@gmail.com" href="mailto:sohailtanveerforjobs@gmail.com" />
+                <ContactLink icon={Github} label="https://github.com/Sohailtanveer1/data-engineering-portfolio" href="#" />
+                <ContactLink icon={Linkedin} label="https://www.linkedin.com/in/mdsohailtanveer/" href="#" />
               </div>
             </div>
 
