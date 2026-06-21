@@ -21,13 +21,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sohail Tanveer — Independent Data Engineer | Scalable Pipelines & Cloud Cost Optimization" },
+      { title: "Sohail Tanveer — GCP Data Engineer | BigQuery · dbt Cloud · Airflow · Iceberg" },
       {
         name: "description",
         content:
-          "Independent Data Engineer building scalable ETL/ELT pipelines on Snowflake, BigQuery, dbt and Airflow. Reduce data latency, cut cloud costs, ship production-grade infrastructure.",
+          "GCP Data Engineer specialising in batch ingestion with watermark tables, Medallion Architecture on BigQuery, dbt Cloud transformations, and streaming pipelines with Pub/Sub & Dataflow.",
       },
-      { property: "og:title", content: "Sohail Tanveer — Independent Data Engineer" },
+      { property: "og:title", content: "Sohail Tanveer — GCP Data Engineer" },
       { property: "og:description", content: "I build scalable data pipelines that turn raw data into business decisions." },
       { property: "og:type", content: "website" },
     ],
@@ -36,69 +36,88 @@ export const Route = createFileRoute("/")({
 });
 
 const stack = [
-  "Snowflake", "BigQuery", "Databricks", "dbt", "Apache Airflow", "Dagster",
-  "Apache Kafka", "Python", "AWS", "GCP", "PostgreSQL", "Terraform",
-  "Fivetran", "Spark", "Redshift", "Kubernetes",
+  "GCP", "BigQuery", "Apache Iceberg", "dbt Cloud", "Apache Airflow", "Cloud Composer",
+  "Pub/Sub", "Dataflow", "GCS", "Python", "SQL", "PySpark",
+  "Dataproc", "Cloud Run", "GitLab CI/CD", "Apache Beam",
 ];
 
 const pillars = [
   {
     icon: Workflow,
-    title: "End-to-End Pipeline Automation",
-    body: "Ingestion from REST, gRPC, CDC and event streams. Idempotent ELT with dbt, contract-tested transformations, dead-letter queues and SLA-aware orchestration in Airflow or Dagster.",
-    bullets: ["CDC + streaming ingestion", "Idempotent, replayable jobs", "SLA + freshness alerting"],
-  },
-  {
-    icon: Gauge,
-    title: "Cloud Cost & Performance Tuning",
-    body: "Audit warehouse spend down to the query. Re-cluster Snowflake tables, right-size compute, kill runaway SQL, push BigQuery slot usage into predictable budgets.",
-    bullets: ["Warehouse + slot right-sizing", "Query plan rewrites", "Spend forecasting"],
+    title: "Batch Ingestion with Watermark Tables",
+    body: "Airflow DAGs on Cloud Composer orchestrate incremental batch loads from REST APIs, SFTP, and databases using watermark tables to track high-water marks per source — idempotent, replayable, and safe to re-run.",
+    bullets: ["Watermark-driven incremental loads", "Multi-source: APIs, SFTP, databases", "Idempotent & replayable DAGs"],
   },
   {
     icon: Layers,
-    title: "Modern Data Stack Setup",
-    body: "Migrate from brittle stored-proc + cron stacks to a modular lakehouse: Iceberg/Delta storage, dbt modeling, semantic layer, lineage and CI/CD on every model change.",
-    bullets: ["Lakehouse on S3 / GCS", "dbt + semantic layer", "CI/CD for data models"],
+    title: "Medallion Architecture on GCP",
+    body: "Raw data lands in Apache Iceberg tables on GCS (Bronze), gets cleaned and standardised into BigQuery staging (Silver), and promoted to governed live tables in BigQuery (Gold) — with full lineage end to end.",
+    bullets: ["Raw: Iceberg on GCS", "Stage & Live: BigQuery", "Full lineage across all layers"],
+  },
+  {
+    icon: Gauge,
+    title: "dbt Cloud Transformations & SCD",
+    body: "dbt Cloud applies business logic on the staging layer and loads live tables as SCD Type 1 (upsert) or SCD Type 2 (full history) depending on the use case — with CI/CD gating every model change before it hits production.",
+    bullets: ["SCD Type 1 & 2 in live tables", "dbt Cloud CI/CD on every PR", "Semantic layer for self-serve analytics"],
   },
 ];
 
 const cases = [
   {
-    title: "Real-Time Marketplace Analytics for a Series-B Fintech",
-    timeline: "11-week engagement · 2025",
-    role: "Solo Data Architect",
+    title: "Multi-Source Data Integration Platform",
+    timeline: "Oct 2025 – Present · Coforge",
+    role: "Senior Data Engineer",
     problem:
-      "12 fragmented payment-provider APIs, batch jobs landing reports 24 hours late, and a Snowflake bill growing 18% month-over-month from unbounded warehouse scaling.",
-    stack: ["Kafka", "Debezium CDC", "Snowflake", "dbt Cloud", "Airflow", "Terraform"],
+      "Business needed to sync data from 10+ heterogeneous sources — REST APIs, SFTP, and databases — into BigQuery. Every new source required weeks of bespoke engineering with no reuse across feeds.",
+    stack: ["GCP", "Cloud Composer", "Airflow", "Apache Iceberg", "GCS", "BigQuery", "dbt Cloud", "Python"],
     architecture: [
-      "Debezium CDC → Kafka topics → Snowpipe Streaming",
-      "dbt incremental models with state:modified+ selectors",
-      "Cluster keys + auto-suspend tuned per workload tier",
-      "Airflow DAGs with data-aware scheduling and PagerDuty SLAs",
+      "Watermark tables track the high-water mark per source, enabling safe incremental batch loads without full re-scans",
+      "Airflow DAGs on Cloud Composer orchestrate: extract → raw Iceberg on GCS → stage in BigQuery → live in BigQuery",
+      "dbt Cloud applies transformations and loads live tables as SCD Type 1; config-driven so new sources require only a YAML entry",
+      "Dead-letter queues and automatic retries ensure no data loss on transient source failures",
     ],
     impact: [
-      "Data latency: 24h → 15 min",
-      "Snowflake compute: $7,800 → $3,600 / mo",
-      "Finance close: 9 days → 2 days",
+      "New source onboarding time cut by 40%",
+      "10+ sources unified in one reusable framework",
+      "99%+ pipeline reliability via watermark-based idempotency",
     ],
   },
   {
-    title: "Lakehouse Migration for a Logistics SaaS (180+ Tables)",
-    timeline: "16-week engagement · 2024",
-    role: "Solo Data Architect",
+    title: "Data Product Platform (Dynamic Template)",
+    timeline: "Oct 2025 – Present · Coforge",
+    role: "Senior Data Engineer",
     problem:
-      "Legacy SQL Server + nightly SSIS pipelines, no lineage, no tests, six analysts blocked by a single 7-hour batch window. Schema changes shipped to prod via shared drive.",
-    stack: ["AWS", "S3 + Iceberg", "Glue", "dbt Core", "Dagster", "Great Expectations"],
+      "Each business domain needed a governed data product but engineering built bespoke pipelines per team — no consistency, no reuse, and new products took 6+ weeks to deliver from scratch.",
+    stack: ["GCP", "BigQuery", "Apache Iceberg", "GCS", "dbt Cloud", "Airflow", "Cloud Composer", "Python"],
     architecture: [
-      "Iceberg tables on S3 with partition evolution",
-      "Dagster software-defined assets for full lineage graph",
-      "dbt + Great Expectations gating every PR in CI",
-      "Blue/green schema rollouts with zero-downtime cutover",
+      "Dynamic dbt template generates staging models, SCD Type 2 snapshots, and semantic views per domain from a single config file",
+      "Watermark-driven Airflow DAGs load incrementally into raw Iceberg tables on GCS, then promote to BigQuery stage",
+      "Live layer in BigQuery uses SCD Type 2 for dimension tables — full point-in-time auditability, zero data loss on source changes",
+      "Pre-aggregated semantic BigQuery views enable self-serve analytics without analyst dependency on engineering",
     ],
     impact: [
-      "Batch window: 7h → 38 min",
-      "Storage cost: ↓ 61% via Iceberg compaction",
-      "Analyst lead time: 4 days → same day",
+      "Data product delivery: 6 weeks → under 1 week",
+      "SCD Type 2 history across all domain entities",
+      "Ad-hoc analyst requests reduced by 30%",
+    ],
+  },
+  {
+    title: "Real-Time Streaming Pipeline on GCP",
+    timeline: "2024 · Logic Pursuits Consulting India",
+    role: "Data Engineer",
+    problem:
+      "Business events — transactions and user activity — were being batched overnight. A 12-hour data lag was blocking real-time dashboards, fraud detection, and operational alerts.",
+    stack: ["GCP", "Pub/Sub", "Dataflow", "Apache Beam", "BigQuery", "dbt Cloud", "Cloud Composer", "Python"],
+    architecture: [
+      "Events published to Pub/Sub topics; Dataflow (Apache Beam) streaming job consumes, validates, and enriches records in real-time",
+      "Windowed aggregations computed in Dataflow and written to BigQuery via streaming inserts with exactly-once semantics",
+      "dbt Cloud materialises incremental models on top of streaming BigQuery tables, producing analytics-ready views",
+      "Airflow on Cloud Composer orchestrates daily backfill jobs and monitors Dataflow pipeline health via alerts",
+    ],
+    impact: [
+      "Data latency: 12 hours → under 2 minutes",
+      "Real-time fraud detection enabled for ops team",
+      "Streaming & batch unified in a single BigQuery layer",
     ],
   },
 ];
@@ -198,8 +217,8 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl"
         >
-          An independent Data Engineer helping remote teams automate data ingestion, optimize cloud data warehouses,
-          and slash compute costs — without the overhead of a full agency.
+          GCP Data Engineer specialising in batch ingestion with watermark tables, Medallion Architecture
+          (Iceberg → BigQuery), dbt Cloud transformations with SCD Type 1 & 2, and real-time streaming pipelines using Pub/Sub and Dataflow.
         </motion.p>
 
         <motion.div
@@ -231,10 +250,10 @@ function Hero() {
           className="mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4"
         >
           {[
-            ["7+ yrs", "shipping data infra"],
-            ["$340k", "client cloud spend cut"],
-            ["180+", "dbt models in production"],
-            ["12", "remote engagements"],
+            ["4 yrs", "GCP data engineering"],
+            ["3", "GCP pipeline patterns"],
+            ["99%+", "pipeline reliability"],
+            ["GCP", "Professional Certified"],
           ].map(([k, v]) => (
             <div key={k} className="bg-background p-5">
               <div className="font-display text-2xl font-semibold text-foreground">{k}</div>
@@ -321,7 +340,7 @@ function CaseStudies() {
         <SectionHeader
           kicker="Project Case Studies"
           title="Selected engagements"
-          sub="Two recent solo builds. Real architectures, real numbers."
+          sub="Three GCP builds. Real architectures, real numbers."
         />
         <div className="mt-14 space-y-8">
           {cases.map((c, i) => (
@@ -405,8 +424,10 @@ function CaseStudies() {
 function ArchitectureDiagram({ variant }: { variant: number }) {
   const nodes =
     variant === 0
-      ? ["Sources", "Kafka", "Snowflake", "dbt", "BI"]
-      : ["SQL Server", "Glue", "S3 / Iceberg", "Dagster", "Analytics"];
+      ? ["Sources", "Airflow", "Iceberg Raw", "BQ Stage", "BQ Live"]
+      : variant === 1
+      ? ["Config", "Iceberg Raw", "BQ Stage", "dbt Cloud", "Live Tables"]
+      : ["Events", "Pub/Sub", "Dataflow", "BigQuery", "dbt Cloud"];
   return (
     <div className="rounded-lg border border-border bg-background/60 p-4">
       <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
